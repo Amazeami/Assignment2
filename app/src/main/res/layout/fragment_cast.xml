@@ -39,10 +39,10 @@
         <include
             android:id="@+id/error_screen"
             layout="@layout/error_screen"
-            android:visibility="gone"
+            android:visibility="visible"
             app:detailNetworkErrorVisibility="@{viewModel.movieDetails}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center" />
 
     </FrameLayout>

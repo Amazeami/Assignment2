@@ -3,10 +3,12 @@ package com.example.assignment
 
 import android.app.Application
 import androidx.room.Room
+import com.example.assignment.ui.fragments.DetailFragmentViewModel
 import com.example.assignment.ui.lists.MovieListViewModel
 import com.example.assignment.api.MoviesApi
 import com.example.assignment.models.Movie
 import com.example.assignment.persistance.MovieDB
+import com.example.assignment.repository.MovieDetailRepository
 import com.example.assignment.repository.MoviesRepository
 import com.example.assignment.util.AppExecutors
 import com.example.assignment.util.BASE_URL
@@ -61,12 +63,22 @@ class BaseApplication : Application() {
             MoviesRepository(movieDB.movieDao, appExecutors, moviesApi)
         }
 
-
+        single<MovieDetailRepository> {
+            val moviesApi: MoviesApi = get()
+            MovieDetailRepository(moviesApi)
+        }
 
         single<AppExecutors> {
             AppExecutors()
         }
 
+        viewModel<DetailFragmentViewModel> { (movie: Movie)->
+            val repository: MovieDetailRepository = get()
+            DetailFragmentViewModel(
+                this@BaseApplication,
+                repository, movie
+            )
+        }
     }
 
     override fun onCreate() {

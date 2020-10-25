@@ -111,33 +111,6 @@ class MovieListFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_movie_list_menu, menu)
-        setUpSearchViewListener(menu)
-    }
-
-    private fun setUpSearchViewListener(menu: Menu) {
-        val searchItem: MenuItem = menu.findItem(R.id.menu_item_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.apply {
-            queryHint = context.getString(R.string.query_hint)
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    query?.let {
-                        movieListViewModel.query = query
-                        getMovieList()
-                    }
-                    onActionViewCollapsed()
-                    searchItem.collapseActionView()
-                    hideSoftKeyboard()
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-
-            })
-
-        }
 
     }
 
