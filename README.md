@@ -1,6 +1,10 @@
 # Assignment2
 # Mvvm Assignment.
 
+
+<img src="images/Screenshot_20201025-183054.jpg" height="500">|<img src="images/Screenshot_20201025-183143.jpg" width="500">|<img src="images/Screenshot_20201025-183020.jpg" height="500">|
+
+
 # Libraries used
 * AndroidX - Previously known as 'Android support Library'
 * Glide - for loading and caching images
