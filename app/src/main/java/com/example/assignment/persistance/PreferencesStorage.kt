@@ -19,7 +19,7 @@ object PreferencesStorage {
             .apply()
     }
 
-    fun getStoredCategory(context: Context): Category {
+    fun getStoredCategory(context: Context): Category{
         val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
         val valueString =  prefs.getString(PREF_CATEGORY,Category.POPULAR.toString())
         return when(valueString){

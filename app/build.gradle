@@ -82,10 +82,33 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
+    //ViewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // Card View
+    def cardview_version = "1.0.0"
+    implementation "androidx.cardview:cardview:$cardview_version"
+
     //Material Design Components
     def material_version = '1.2.0-alpha02'
     implementation "com.google.android.material:material:$material_version"
-    
+
+    // Recyclerview
+    def recyclerview_version = "1.1.0-beta03"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    //glide
+    def glide_version = "4.9.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    // Glide RecyclerView Preloader
+    implementation ("com.github.bumptech.glide:recyclerview-integration:$glide_version") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
+
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     //Preferences
     implementation "androidx.preference:preference-ktx:1.0.0"

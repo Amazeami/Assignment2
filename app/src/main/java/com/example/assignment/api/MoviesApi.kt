@@ -3,6 +3,7 @@ package com.example.assignment.api
 import androidx.lifecycle.LiveData
 import com.example.assignment.BuildConfig
 import com.example.assignment.api.responses.ApiResponse
+import com.example.assignment.api.responses.MovieDetailsResponse
 import com.example.assignment.api.responses.MoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -34,5 +35,12 @@ interface MoviesApi {
         @Query("page") page: Int = 1,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): LiveData<ApiResponse<MoviesResponse>>
+
+    @GET("movie/{id}")
+    fun getMovieDetail(
+        @Path("id") id: Long,
+        @Query("append_to_response") details: String = "videos,credits,reviews",
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
+    ): LiveData<ApiResponse<MovieDetailsResponse>>
 
 }

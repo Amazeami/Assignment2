@@ -3,7 +3,9 @@ package com.example.assignment
 
 import android.app.Application
 import androidx.room.Room
+import com.example.assignment.ui.lists.MovieListViewModel
 import com.example.assignment.api.MoviesApi
+import com.example.assignment.models.Movie
 import com.example.assignment.persistance.MovieDB
 import com.example.assignment.repository.MoviesRepository
 import com.example.assignment.util.AppExecutors
@@ -39,7 +41,12 @@ class BaseApplication : Application() {
                 .client(client)
                 .build().create(MoviesApi::class.java)
         }
-
+        viewModel<MovieListViewModel> {
+            val repository: MoviesRepository = get()
+            MovieListViewModel(
+                repository, this@BaseApplication
+            )
+        }
         single<MovieDB> {
             Room.databaseBuilder(
                 this@BaseApplication.applicationContext, MovieDB::class.java,
@@ -53,6 +60,7 @@ class BaseApplication : Application() {
             val moviesApi: MoviesApi = get()
             MoviesRepository(movieDB.movieDao, appExecutors, moviesApi)
         }
+
 
 
         single<AppExecutors> {
